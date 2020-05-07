@@ -138,7 +138,7 @@ Examples:
 ![image](https://github.com/vinujakhatode/AutomatedIntegration/blob/master/Snapshots/Production%20server%20with%20testing%20files.JPG)
 
 
-![image](https://github.com/vinujakhatode/AutomatedIntegration/blob/master/Snapshots/Build%20success.JPG)
+![image](https://github.com/vinujakhatode/AutomatedIntegration/blob/master/Snapshots/Buildsuccess.JPG)
 
 - NGROK deployment
 
