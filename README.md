@@ -151,6 +151,8 @@ Run `./ngrok httpd 8082` command in the  folder where your ngrok program is loca
 This ngrok url can be shared and can be accsessed from any device. 
 
 
-#### Author:
+# Author:
 
-## [Vinuja Khatode](https://github.com/vinujakhatode/)
+### [Vinuja Khatode](https://github.com/vinujakhatode/)
+
+### [Liscense](https://github.com/vinujakhatode/AutomatedIntegration/blob/master/LICENSE)
