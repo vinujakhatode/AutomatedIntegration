@@ -138,7 +138,7 @@ Examples:
 ![image](https://github.com/vinujakhatode/AutomatedIntegration/blob/master/Snapshots/Production%20server%20with%20testing%20files.JPG)
 
 
-![image](https://github.com/vinujakhatode/AutomatedIntegration/blob/master/Snapshots/Build%20success.png)
+![image](https://github.com/vinujakhatode/AutomatedIntegration/blob/master/Snapshots/Build%20success.JPG)
 
 - NGROK deployment
 
@@ -149,3 +149,8 @@ Run `./ngrok httpd 8082` command in the  folder where your ngrok program is loca
 ![image](https://github.com/vinujakhatode/AutomatedIntegration/blob/master/Snapshots/ngrok%20test.JPG)
 
 This ngrok url can be shared and can be accsessed from any device. 
+
+
+#### Author:
+
+## [Vinuja Khatode](https://github.com/vinujakhatode/)
