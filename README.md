@@ -36,6 +36,8 @@ setenforce 0
 Edit the `sudoers` file using : `gedit /etc/sudoers` in Redhat.  
 Write `jenkins ALL=(ALL)  NOPASSWD:ALL` after the line `root ALL=(ALL) ALL`
 ![sudoers](https://github.com/vinujakhatode/AutomatedIntegration/blob/master/Snapshots/image.png)
+
+Also, make two directories in Redhat, named Production and Testing.
     
 - Create the git repository:
 First, change to the directory where you want to work.
@@ -68,5 +70,82 @@ add this to the file:
  git push -u origin dev1
  ```
 - As, you have started jenkins from redhat system, get the ip of the system using ` ifconfig enp0s3` .
-after getting IP go to the browser type that IP and add port 8080 to it. `190.168....:8080` 
+after getting IP go to the browser type that IP and add port 8080 to it. `192.168....:8080` 
 this will start the jenkins GUI.
+Log in to your Jenkins account.
+If account is not set, 
+run ` cat /var/lib/jenkins/secrets/initialAdminPassword ` command in your redhat terminal, and copy that password and paste into that inputbox. You'll be loged In. Install the Github Plugins from there. Now, you'll be asked to set new credentials. Complete that step.
+![jenkin](https://github.com/vinujakhatode/AutomatedIntegration/blob/master/Snapshots/jenkin%20setup.jpeg)
+
+- Now, Click on create new job and start configuring new job:
+![job1](https://github.com/vinujakhatode/AutomatedIntegration/blob/master/Snapshots/job1_1.JPG)
+![job11](https://github.com/vinujakhatode/AutomatedIntegration/blob/master/Snapshots/Job1_2.JPG)
+```
+if sudo docker ps | grep production
+then
+echo "Prod server already running"
+else
+sudo docker run -d -t -i -p 8082:80 -v /root/Production:/usr/local/apache2/htdocs/ --name production httpd
+fi
+sudo cp -r -v -f * /root/Production/
+```
+![job111](https://github.com/vinujakhatode/AutomatedIntegration/blob/master/Snapshots/Job1-3.JPG)
+
+Click on Apply and then Save.
+
+- Proceed for Job 2:
+![job2](https://github.com/vinujakhatode/AutomatedIntegration/blob/master/Snapshots/Job21.JPG)
+
+![job2](https://github.com/vinujakhatode/AutomatedIntegration/blob/master/Snapshots/Job22.JPG)
+
+```
+if sudo docker ps | grep testing
+then
+echo "Test server already running"
+else
+sudo docker run -d -t -i -p 8081:80 -v /root/Testing:/usr/local/apache2/htdocs/ --name testing httpd
+fi
+sudo cp -r -v -f * /root/Testing/
+```
+
+![job2](https://github.com/vinujakhatode/AutomatedIntegration/blob/master/Snapshots/Job23.JPG)
+
+Click on Apply and then Save.
+
+- Proceed for Job3 (Merging):
+
+![job3](https://github.com/vinujakhatode/AutomatedIntegration/blob/master/Snapshots/Job31.JPG)
+
+![job3](https://github.com/vinujakhatode/AutomatedIntegration/blob/master/Snapshots/Job32.JPG)
+
+![job3](https://github.com/vinujakhatode/AutomatedIntegration/blob/master/Snapshots/Job33.JPG)
+
+Click on Apply and then Save.
+
+
+- Now, Build all the jobs
+and in your browser, type `192.168.****:8081 ` and `192.168.****:8082` and browse the files of your testing and production server.
+In this task, my 8082 port is for production and 8081 for testing.
+You can now see the the production files in the testing server and testing files in the production server.
+Examples:
+    - Production server
+![image](https://github.com/vinujakhatode/AutomatedIntegration/blob/master/Snapshots/Production%20server.JPG)
+    - Testing server
+![image](https://github.com/vinujakhatode/AutomatedIntegration/blob/master/Snapshots/Screenshot%201.JPG)
+    - production files in the testing server
+![image](https://github.com/vinujakhatode/AutomatedIntegration/blob/master/Snapshots/Prod%20files%20on%20testing%20server.JPG)
+    - Testing files in the production server
+![image](https://github.com/vinujakhatode/AutomatedIntegration/blob/master/Snapshots/Production%20server%20with%20testing%20files.JPG)
+
+
+![image](https://github.com/vinujakhatode/AutomatedIntegration/blob/master/Snapshots/Build%20success.png)
+
+- NGROK deployment
+
+Run `./ngrok httpd 8082` command in the  folder where your ngrok program is located.
+
+![image](https://github.com/vinujakhatode/AutomatedIntegration/blob/master/Snapshots/ngrok.JPG)
+![image](https://github.com/vinujakhatode/AutomatedIntegration/blob/master/Snapshots/ngrok%20url.JPG)
+![image](https://github.com/vinujakhatode/AutomatedIntegration/blob/master/Snapshots/ngrok%20test.JPG)
+
+This ngrok url can be shared and can be accsessed from any device. 
